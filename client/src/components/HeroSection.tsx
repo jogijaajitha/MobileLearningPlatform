@@ -31,10 +31,35 @@ const HeroSection: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-lg md:text-xl text-gray-600 mb-8"
+              className="text-lg md:text-xl text-gray-600 mb-6"
             >
-              Skrolla turns any topic into dynamic flashcards for fast, focused learning.
+              Skrolla turns any topic into dynamic, scrollable flashcards that combine short-form lessons with interactive Q&A. It's microlearning designed for busy minds and short attention spans—powered by AI, personalized for you.
             </motion.p>
+            
+            {/* Value Bullets */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8"
+            >
+              <div className="flex items-start">
+                <span className="text-[#4A6FFF] mr-2">📚</span>
+                <p className="text-sm text-gray-600">Learn anything—from coding to cooking—in minutes.</p>
+              </div>
+              <div className="flex items-start">
+                <span className="text-[#4A6FFF] mr-2">⚡</span>
+                <p className="text-sm text-gray-600">Flashcards that teach <em>and</em> quiz you.</p>
+              </div>
+              <div className="flex items-start">
+                <span className="text-[#4A6FFF] mr-2">📱</span>
+                <p className="text-sm text-gray-600">Designed for swipe-based, mobile-first learning.</p>
+              </div>
+              <div className="flex items-start">
+                <span className="text-[#4A6FFF] mr-2">🤖</span>
+                <p className="text-sm text-gray-600">Powered by AI, tailored to your interests.</p>
+              </div>
+            </motion.div>
             
             {/* CTA Form */}
             <motion.div
@@ -43,7 +68,8 @@ const HeroSection: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="max-w-md"
             >
-              <WaitlistForm />
+              <p className="text-sm text-gray-500 mb-3">Be the first to try Skrolla and turn your scroll time into learning time.</p>
+              <WaitlistForm buttonText="Get Early Access" />
             </motion.div>
           </div>
           
