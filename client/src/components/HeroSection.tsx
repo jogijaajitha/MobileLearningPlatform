@@ -74,11 +74,24 @@ const HeroSection: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="max-w-md bg-blue-50 p-5 rounded-lg border border-blue-100"
+              className="max-w-md"
             >
-              <h3 className="font-bold text-blue-800 mb-2">Get Early Access</h3>
-              <p className="text-sm text-gray-600 mb-4">Be the first to try Skrolla and turn your scroll time into learning time.</p>
-              <WaitlistForm buttonText="Get Early Access" />
+              <div className="relative">
+                <div className="absolute -top-3 -left-3 bg-[#FFD166] w-16 h-16 rounded-full opacity-20 z-0"></div>
+                <div className="border-2 border-[#4A6FFF] rounded-xl p-6 bg-white shadow-lg relative z-10">
+                  <div className="flex items-center mb-4">
+                    <div className="w-10 h-10 rounded-full bg-[#4A6FFF] flex items-center justify-center mr-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-xl text-gray-800">Join the Waitlist</h3>
+                  </div>
+                  <p className="text-base text-gray-600 mb-5">Be the first to try Skrolla and turn your scroll time into learning time.</p>
+                  <WaitlistForm buttonText="Get Early Access" />
+                </div>
+              </div>
             </motion.div>
           </div>
           

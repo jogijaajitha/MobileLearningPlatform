@@ -69,7 +69,7 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({
                   <Input
                     placeholder="Enter your email"
                     {...field}
-                    className="px-4 py-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className="px-4 py-3 rounded-lg border-2 border-gray-200 focus:ring-2 focus:ring-[#4A6FFF] focus:border-[#4A6FFF] shadow-sm"
                   />
                 </FormControl>
                 <FormMessage className="text-destructive text-sm mt-1" />
@@ -79,10 +79,10 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({
           <Button
             type="submit"
             disabled={isPending}
-            className={`px-6 py-3 rounded-lg whitespace-nowrap ${
+            className={`px-6 py-3 rounded-lg whitespace-nowrap font-semibold shadow-md ${
               variant === 'default'
-                ? 'bg-[#FF6B6B] hover:bg-opacity-90 text-white'
-                : 'bg-[#FF6B6B] hover:bg-opacity-90 text-white font-medium'
+                ? 'bg-gradient-to-r from-[#4A6FFF] to-[#5C7FFF] hover:from-[#4A6FFF] hover:to-[#6B8BFF] text-white'
+                : 'bg-gradient-to-r from-[#4A6FFF] to-[#5C7FFF] hover:from-[#4A6FFF] hover:to-[#6B8BFF] text-white'
             }`}
           >
             {isPending ? 'Submitting...' : buttonText}
