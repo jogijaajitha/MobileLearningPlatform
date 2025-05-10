@@ -29,10 +29,10 @@ const CTASection: React.FC = () => {
           variants={containerVariants}
         >
           <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold font-heading mb-6">
-            Ready to Transform How You Learn?
+            Ready to Master Any Topic in Minutes?
           </motion.h2>
           <motion.p variants={itemVariants} className="text-lg mb-10 opacity-90">
-            Join our early access list and be among the first to experience the future of learning with Skrolla.
+            Join our early access list and be the first to experience AI-powered flashcards that make learning anything faster and more effective.
           </motion.p>
           
           <motion.div variants={itemVariants} className="max-w-md mx-auto">

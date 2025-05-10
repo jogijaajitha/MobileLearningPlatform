@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 const Home: React.FC = () => {
   // Set document title
   useEffect(() => {
-    document.title = 'Skrolla - The Mobile-First Microlearning App';
+    document.title = 'Skrolla - AI Flashcards for Any Topic';
   }, []);
 
   return (

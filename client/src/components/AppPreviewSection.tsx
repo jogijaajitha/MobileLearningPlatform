@@ -22,16 +22,16 @@ const AppPreviewSection: React.FC = () => {
 
   const benefits = [
     {
-      highlight: "Remember more",
-      text: "with spaced repetition and active recall"
+      highlight: "Instant knowledge",
+      text: "on any topic with AI-generated flashcards"
     },
     {
-      highlight: "Learn faster",
-      text: "with focused micro-content designed for mobile"
+      highlight: "Deeper understanding",
+      text: "through interactive Q&A learning prompts"
     },
     {
-      highlight: "Stay motivated",
-      text: "with gamification and progress tracking"
+      highlight: "Efficient learning",
+      text: "with content tailored specifically to your needs"
     }
   ];
 
@@ -48,10 +48,10 @@ const AppPreviewSection: React.FC = () => {
             className="lg:w-1/2 order-2 lg:order-1"
           >
             <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold font-heading mb-6">
-              Transform Your Learning Experience
+              AI-Powered Flashcards for Any Topic
             </motion.h2>
             <motion.p variants={itemVariants} className="text-lg text-gray-600 mb-8">
-              Skrolla transforms how you consume educational content. No more lengthy courses or boring lectures – just bite-sized, engaging learning experiences that fit perfectly into your daily life.
+              Skrolla uses advanced AI to generate custom flashcards combining concise learning content and Q&A prompts for any topic you want to master—no manual content creation needed.
             </motion.p>
             
             <motion.div variants={containerVariants} className="space-y-4">

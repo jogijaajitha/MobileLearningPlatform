@@ -46,34 +46,34 @@ const FeaturesSection: React.FC = () => {
 
   const features = [
     {
-      icon: <Clock className="text-[#4A6FFF] h-5 w-5" />,
-      title: "Microlearning That Fits",
-      description: "Short, focused lessons designed for mobile. Perfect for busy schedules and on-the-go learning."
+      icon: <Brain className="text-[#4A6FFF] h-5 w-5" />,
+      title: "AI-Generated Content",
+      description: "Advanced AI creates custom flashcards and learning materials for any topic you want to learn."
     },
     {
-      icon: <Brain className="text-[#4A6FFF] h-5 w-5" />,
-      title: "Science-Backed Learning",
-      description: "Built on proven cognitive science principles to maximize retention and minimize forgetting."
+      icon: <Clock className="text-[#4A6FFF] h-5 w-5" />,
+      title: "Bite-sized Learning",
+      description: "Concise, focused content designed to maximize knowledge retention in just minutes a day."
     },
     {
       icon: <User className="text-[#4A6FFF] h-5 w-5" />,
-      title: "Personalized Experience",
-      description: "Content adapts to your learning style, interests, and pace for a truly customized experience."
+      title: "Interactive Q&A",
+      description: "Dynamic question-answer prompts test your understanding and reinforce what you've learned."
     },
     {
       icon: <LineChart className="text-[#4A6FFF] h-5 w-5" />,
-      title: "Track Your Progress",
-      description: "Visualize your learning journey with detailed stats, streaks, and achievement milestones."
+      title: "Adaptive Learning",
+      description: "Content automatically adjusts to focus on areas where you need more practice."
     },
     {
       icon: <Gamepad className="text-[#4A6FFF] h-5 w-5" />,
-      title: "Gamified Learning",
-      description: "Achievement badges, challenges, and rewards make learning feel like playing a game."
+      title: "Swipe-to-Learn Interface",
+      description: "Intuitive, engaging card-based design makes learning feel natural and enjoyable."
     },
     {
       icon: <Wifi className="text-[#4A6FFF] h-5 w-5" />,
-      title: "Offline Learning",
-      description: "Download lessons for offline access. Learn anytime, even without an internet connection."
+      title: "Universal Learning",
+      description: "Master any subject from languages to science, history to programming—all in one app."
     }
   ];
 

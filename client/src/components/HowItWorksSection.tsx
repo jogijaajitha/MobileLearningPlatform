@@ -33,7 +33,7 @@ const HowItWorksSection: React.FC = () => {
             How Skrolla Works
           </motion.h2>
           <motion.p variants={itemVariants} className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Learn anything in bite-sized lessons that fit into your busy schedule. Three simple steps to unlock your potential.
+            Enter any topic and watch Skrolla generate personalized learning content. Three simple steps to effective learning.
           </motion.p>
         </motion.div>
         
@@ -49,14 +49,14 @@ const HowItWorksSection: React.FC = () => {
             <div className="relative mb-8">
               <img 
                 src={APP_IMAGES.step1}
-                alt="Swipeable lesson cards on Skrolla" 
+                alt="Entering a topic in Skrolla app" 
                 className="rounded-2xl shadow-lg h-64 object-cover"
               />
               <div className="absolute -top-4 -right-4 bg-[#4A6FFF] text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">1</div>
             </div>
-            <h3 className="text-xl font-bold font-heading mb-2">Swipe Through Lessons</h3>
+            <h3 className="text-xl font-bold font-heading mb-2">Enter Any Topic</h3>
             <p className="text-gray-600">
-              Quick, engaging lessons designed for mobile. Just swipe to learn something new every day.
+              Simply type in what you want to learn about, and Skrolla instantly generates customized content.
             </p>
           </motion.div>
           
@@ -65,14 +65,14 @@ const HowItWorksSection: React.FC = () => {
             <div className="relative mb-8">
               <img 
                 src={APP_IMAGES.step2}
-                alt="Progress tracking dashboard on Skrolla" 
+                alt="Flashcards in Skrolla app" 
                 className="rounded-2xl shadow-lg h-64 object-cover"
               />
               <div className="absolute -top-4 -right-4 bg-[#FF6B6B] text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">2</div>
             </div>
-            <h3 className="text-xl font-bold font-heading mb-2">Track Your Progress</h3>
+            <h3 className="text-xl font-bold font-heading mb-2">Swipe Through Flashcards</h3>
             <p className="text-gray-600">
-              Watch your knowledge grow with visual progress tracking and achievement badges.
+              Scroll through AI-generated flashcards combining concise lessons and interactive Q&A prompts.
             </p>
           </motion.div>
           
@@ -81,14 +81,14 @@ const HowItWorksSection: React.FC = () => {
             <div className="relative mb-8">
               <img 
                 src={APP_IMAGES.step3}
-                alt="Learning at your own pace on Skrolla" 
+                alt="Learning through Q&A on Skrolla" 
                 className="rounded-2xl shadow-lg h-64 object-cover"
               />
               <div className="absolute -top-4 -right-4 bg-[#FFD166] text-neutral-dark w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">3</div>
             </div>
-            <h3 className="text-xl font-bold font-heading mb-2">Learn At Your Pace</h3>
+            <h3 className="text-xl font-bold font-heading mb-2">Learn Effectively</h3>
             <p className="text-gray-600">
-              Five minutes while waiting for coffee? Perfect for a quick lesson. Learn whenever, wherever.
+              Test your knowledge with interactive questions, reinforce learning, and master any subject quickly.
             </p>
           </motion.div>
         </motion.div>

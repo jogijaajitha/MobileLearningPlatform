@@ -61,21 +61,21 @@ const TestimonialsSection: React.FC = () => {
   const testimonials = [
     {
       rating: 5,
-      quote: "I never thought I could learn so much in just my spare time. Skrolla has completely changed how I approach learning new skills.",
+      quote: "Skrolla's AI flashcards helped me learn web development concepts in days instead of weeks. I just entered the topics I needed and the app did the rest.",
       initials: "JD",
       name: "Jamie Davis",
       role: "Product Designer"
     },
     {
       rating: 5,
-      quote: "The gamification aspect keeps me coming back. I've learned more Spanish in two weeks with Skrolla than I did in two months with traditional methods.",
+      quote: "The Q&A format is brilliant! It helped me prepare for my finals by testing my knowledge in a way that feels natural. I've learned more Spanish in two weeks with Skrolla than two months with other apps.",
       initials: "SR",
       name: "Sarah Reynolds",
       role: "Marketing Manager"
     },
     {
       rating: 4.5,
-      quote: "As a busy parent, finding time to learn has always been a challenge. Skrolla lets me squeeze in learning during small pockets of downtime throughout my day.",
+      quote: "As a busy parent, I love that I can pick any random topic my kids ask about and instantly have flashcards to learn with them. The AI generates perfect content every time.",
       initials: "MT",
       name: "Michael Torres",
       role: "Software Engineer"
@@ -84,16 +84,16 @@ const TestimonialsSection: React.FC = () => {
 
   const stats = [
     {
-      value: "87%",
-      description: "reported improved retention vs. traditional methods"
+      value: "93%",
+      description: "faster learning with AI-generated flashcards"
     },
     {
-      value: "15+",
-      description: "minutes of daily learning on average"
+      value: "10+",
+      description: "topics mastered per month by average users"
     },
     {
-      value: "92%",
-      description: "completion rate for courses started"
+      value: "95%",
+      description: "of users report better knowledge retention"
     }
   ];
 
