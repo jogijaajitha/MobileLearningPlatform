@@ -33,7 +33,7 @@ const HowItWorksSection: React.FC = () => {
             How Skrolla Works
           </motion.h2>
           <motion.p variants={itemVariants} className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Enter any topic and watch Skrolla generate personalized learning content. Three simple steps to effective learning.
+            Learning shouldn't be complicated. With Skrolla, mastering any subject is as simple as these three steps.
           </motion.p>
         </motion.div>
         
@@ -56,7 +56,7 @@ const HowItWorksSection: React.FC = () => {
             </div>
             <h3 className="text-xl font-bold font-heading mb-2">Enter Any Topic</h3>
             <p className="text-gray-600">
-              Simply type in what you want to learn about, and Skrolla instantly generates customized content.
+              Type anything you're curious about—from quantum physics to digital marketing—and watch AI create your personal curriculum.
             </p>
           </motion.div>
           
@@ -72,7 +72,7 @@ const HowItWorksSection: React.FC = () => {
             </div>
             <h3 className="text-xl font-bold font-heading mb-2">Swipe Through Flashcards</h3>
             <p className="text-gray-600">
-              Scroll through AI-generated flashcards combining concise lessons and interactive Q&A prompts.
+              Effortlessly flip through beautiful, engaging cards that break down complex concepts into digestible pieces. No more information overload.
             </p>
           </motion.div>
           
@@ -86,9 +86,9 @@ const HowItWorksSection: React.FC = () => {
               />
               <div className="absolute -top-4 -right-4 bg-[#FFD166] text-neutral-dark w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">3</div>
             </div>
-            <h3 className="text-xl font-bold font-heading mb-2">Learn Effectively</h3>
+            <h3 className="text-xl font-bold font-heading mb-2">Master Any Subject</h3>
             <p className="text-gray-600">
-              Test your knowledge with interactive questions, reinforce learning, and master any subject quickly.
+              Answer AI-generated questions that adapt to your progress. What used to take months of study now happens in minutes of engaging interaction.
             </p>
           </motion.div>
         </motion.div>

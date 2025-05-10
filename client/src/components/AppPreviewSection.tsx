@@ -48,10 +48,10 @@ const AppPreviewSection: React.FC = () => {
             className="lg:w-1/2 order-2 lg:order-1"
           >
             <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold font-heading mb-6">
-              AI-Powered Flashcards for Any Topic
+              Your Personal Learning Assistant
             </motion.h2>
             <motion.p variants={itemVariants} className="text-lg text-gray-600 mb-8">
-              Skrolla uses advanced AI to generate custom flashcards combining concise learning content and Q&A prompts for any topic you want to master—no manual content creation needed.
+              Forget endless searches and boring textbooks. Skrolla's AI creates dynamic flashcards tailored exactly to what you need to learn. Simply tap through bite-sized content, answer questions that reinforce knowledge, and watch complex topics become simple.
             </motion.p>
             
             <motion.div variants={containerVariants} className="space-y-4">
