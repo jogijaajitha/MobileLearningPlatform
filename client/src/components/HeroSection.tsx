@@ -25,7 +25,7 @@ const HeroSection: React.FC = () => {
               transition={{ duration: 0.5 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading leading-tight mb-4"
             >
-              Learn Anything in <span className="text-[#4A6FFF]">Minutes</span>, Not Months
+              Type. Swipe. <span className="text-[#4A6FFF]">Master</span>.
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -33,7 +33,7 @@ const HeroSection: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-lg md:text-xl text-gray-600 mb-8"
             >
-              Skrolla turns any topic into engaging, swipeable flashcards powered by AI. From Spanish to Astrophysics—learn faster with personalized content that adapts to you.
+              Skrolla turns any topic into dynamic flashcards for fast, focused learning.
             </motion.p>
             
             {/* CTA Form */}
