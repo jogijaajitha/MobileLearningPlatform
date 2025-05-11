@@ -1,119 +1,67 @@
-// This is a simple Cloudflare Pages worker that serves static assets
-import {
-  getAssetFromKV,
-  serveSinglePageApp,
-} from "@cloudflare/kv-asset-handler";
-
-// Define options for serving assets locally
-const ASSETS_MANIFEST = {}; // This will be auto-populated in production
-const LOCAL_ASSETS_PATH = "../dist/public"; // Relative path from worker_sites directory
+// Simple Cloudflare Worker that returns a dummy response
 
 export default {
   async fetch(request: Request, env: any, ctx: any) {
+    // Get request information
     const url = new URL(request.url);
     const path = url.pathname;
 
-    // Debug output to help identify issues
-    console.log("Worker request path:", path);
-    console.log("Environment keys:", Object.keys(env || {}));
-    console.log("ASSETS binding present:", !!(env && env.ASSETS));
+    console.log("Request received for:", path);
 
-    // Handle API requests (placeholder for now)
-    if (path.startsWith("/api/")) {
-      return new Response(
-        JSON.stringify({
-          message:
-            "API endpoints are not available in the static Cloudflare Pages deployment.",
-          info: "This is a static frontend-only deployment.",
-        }),
-        {
-          headers: { "Content-Type": "application/json" },
+    // Return a dummy HTML response
+    return new Response(
+      `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Skrolla App</title>
+          <style>
+            body {
+              font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+              max-width: 800px;
+              margin: 0 auto;
+              padding: 2rem;
+              line-height: 1.6;
+              color: #333;
+              background: #f9f9f9;
+            }
+            h1 { color: #7c3aed; }
+            .card {
+              background: white;
+              border-radius: 8px;
+              padding: 1.5rem;
+              box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+              margin: 2rem 0;
+            }
+            .path { 
+              font-family: monospace;
+              background: #333;
+              color: #fff;
+              padding: 0.5rem;
+              border-radius: 4px;
+            }
+          </style>
+        </head>
+        <body>
+          <h1>Skrolla Mobile Learning Platform</h1>
+          <div class="card">
+            <h2>🎉 Dummy Response</h2>
+            <p>This is a simplified dummy response from the Cloudflare Worker.</p>
+            <p>You requested: <span class="path">${path}</span></p>
+          </div>
+          <div class="card">
+            <h3>Environment Info</h3>
+            <p>Environment keys: ${Object.keys(env || {}).join(", ") || "No environment keys available"}</p>
+            <p>Assets binding available: ${!!(env && env.ASSETS)}</p>
+          </div>
+        </body>
+      </html>
+    `,
+      {
+        headers: {
+          "Content-Type": "text/html;charset=UTF-8",
         },
-      );
-    }
-
-    try {
-      // If ASSETS binding exists, use it (this is the standard way)
-      if (env && env.ASSETS) {
-        // Try to serve the requested path
-        let response = await env.ASSETS.fetch(request.clone());
-
-        // If it's a 404 and not a file with a specific extension, serve index.html for SPA routing
-        if (
-          response.status === 404 &&
-          !path.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/)
-        ) {
-          // Create a new request for index.html
-          const indexRequest = new Request(
-            new URL("/index.html", request.url),
-            request,
-          );
-          return env.ASSETS.fetch(indexRequest);
-        }
-
-        return response;
-      }
-      // Fallback to kv-asset-handler for local development
-      else {
-        console.log(
-          "ASSETS binding not available, using fallback kv-asset-handler",
-        );
-
-        // Use kv-asset-handler to serve from local filesystem in development
-        const options = {
-          ASSET_NAMESPACE: ASSETS_MANIFEST,
-          ASSET_MANIFEST: ASSETS_MANIFEST,
-          cacheControl: {
-            browserTTL: 0, // No cache during development
-            edgeTTL: 0,
-          },
-          defaultMimeType: "text/html",
-          defaultDocument: "index.html",
-        };
-
-        try {
-          // For non-file extensions that might be SPA routes
-          if (
-            !path.match(
-              /\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/,
-            )
-          ) {
-            return await serveSinglePageApp(request, options);
-          }
-
-          // For direct file requests
-          return await getAssetFromKV(
-            {
-              request,
-              waitUntil: (promise: Promise<any>) => ctx.waitUntil(promise),
-            },
-            options,
-          );
-        } catch (kvError: any) {
-          console.error("Error serving from KV:", kvError);
-
-          // If we still can't serve the asset, show a more informative error
-          return new Response(
-            `Unable to serve the requested resource. Please ensure you have built the project (npm run build) and are running with the correct configuration.
-
-Details: ${kvError.message}
-
-For best results, run:
-npm run dev:worker
-            `,
-            {
-              status: 404,
-              headers: { "Content-Type": "text/plain" },
-            },
-          );
-        }
-      }
-    } catch (error: any) {
-      console.error("Worker error:", error);
-      return new Response(`Error serving content: ${error.message}`, {
-        status: 500,
-        headers: { "Content-Type": "text/plain" },
-      });
-    }
+      },
+    );
   },
 };
