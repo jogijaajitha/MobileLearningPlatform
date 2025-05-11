@@ -3,5 +3,8 @@ compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 main = "_worker.js"
 
+[build]
+command = "npm install && npm run build"
+
 [site]
 bucket = "./dist/public"
