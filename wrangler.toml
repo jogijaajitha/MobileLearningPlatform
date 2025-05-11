@@ -1,6 +1,6 @@
 name = "skrolla"
 compatibility_date = "2024-09-25"
-compatibility_flags = ["nodejs_compat"]
+compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
 main = "_worker.js"
 
 [build]
