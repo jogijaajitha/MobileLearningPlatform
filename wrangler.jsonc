@@ -1,0 +1,7 @@
+{
+  "name": "mobile-learning-platform",
+  "compatibility_date": "2025-05-11",
+  "assets": {
+    "directory": "./dist"
+  }
+} 
