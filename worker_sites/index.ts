@@ -1,4 +1,12 @@
 // This is a simple Cloudflare Pages worker that serves static assets
+import {
+  getAssetFromKV,
+  serveSinglePageApp,
+} from "@cloudflare/kv-asset-handler";
+
+// Define options for serving assets locally
+const ASSETS_MANIFEST = {}; // This will be auto-populated in production
+const LOCAL_ASSETS_PATH = "../dist/public"; // Relative path from worker_sites directory
 
 export default {
   async fetch(request: Request, env: any, ctx: any) {
@@ -24,39 +32,82 @@ export default {
       );
     }
 
-    // Check if ASSETS binding exists before using it
-    if (!env || !env.ASSETS) {
-      console.error("ASSETS binding is not available.", {
-        environmentKeys: env ? Object.keys(env) : "env is undefined",
-      });
-
-      return new Response(
-        "Configuration Error: Cloudflare Pages assets not available. This typically happens during local development when the ASSETS binding isn't configured properly. Please check your wrangler.toml file and ensure you're using --site flag with wrangler dev.",
-        {
-          status: 500,
-          headers: { "Content-Type": "text/plain" },
-        },
-      );
-    }
-
     try {
-      // Try to serve the requested path
-      let response = await env.ASSETS.fetch(request.clone());
+      // If ASSETS binding exists, use it (this is the standard way)
+      if (env && env.ASSETS) {
+        // Try to serve the requested path
+        let response = await env.ASSETS.fetch(request.clone());
 
-      // If it's a 404 and not a file with a specific extension, serve index.html for SPA routing
-      if (
-        response.status === 404 &&
-        !path.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/)
-      ) {
-        // Create a new request for index.html
-        const indexRequest = new Request(
-          new URL("/index.html", request.url),
-          request,
-        );
-        return env.ASSETS.fetch(indexRequest);
+        // If it's a 404 and not a file with a specific extension, serve index.html for SPA routing
+        if (
+          response.status === 404 &&
+          !path.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/)
+        ) {
+          // Create a new request for index.html
+          const indexRequest = new Request(
+            new URL("/index.html", request.url),
+            request,
+          );
+          return env.ASSETS.fetch(indexRequest);
+        }
+
+        return response;
       }
+      // Fallback to kv-asset-handler for local development
+      else {
+        console.log(
+          "ASSETS binding not available, using fallback kv-asset-handler",
+        );
 
-      return response;
+        // Use kv-asset-handler to serve from local filesystem in development
+        const options = {
+          ASSET_NAMESPACE: ASSETS_MANIFEST,
+          ASSET_MANIFEST: ASSETS_MANIFEST,
+          cacheControl: {
+            browserTTL: 0, // No cache during development
+            edgeTTL: 0,
+          },
+          defaultMimeType: "text/html",
+          defaultDocument: "index.html",
+        };
+
+        try {
+          // For non-file extensions that might be SPA routes
+          if (
+            !path.match(
+              /\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/,
+            )
+          ) {
+            return await serveSinglePageApp(request, options);
+          }
+
+          // For direct file requests
+          return await getAssetFromKV(
+            {
+              request,
+              waitUntil: (promise: Promise<any>) => ctx.waitUntil(promise),
+            },
+            options,
+          );
+        } catch (kvError: any) {
+          console.error("Error serving from KV:", kvError);
+
+          // If we still can't serve the asset, show a more informative error
+          return new Response(
+            `Unable to serve the requested resource. Please ensure you have built the project (npm run build) and are running with the correct configuration.
+
+Details: ${kvError.message}
+
+For best results, run:
+npm run dev:worker
+            `,
+            {
+              status: 404,
+              headers: { "Content-Type": "text/plain" },
+            },
+          );
+        }
+      }
     } catch (error: any) {
       console.error("Worker error:", error);
       return new Response(`Error serving content: ${error.message}`, {
