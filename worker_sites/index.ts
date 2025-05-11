@@ -1,7 +1,7 @@
 // This is a simple Cloudflare Pages worker that serves static assets
 
 export default {
-  async fetch(request, env, ctx) {
+  async fetch(request: Request, env: any, ctx: any) {
     const url = new URL(request.url);
 
     // Handle API requests (placeholder for now)
@@ -32,7 +32,7 @@ export default {
       }
 
       return response;
-    } catch (error) {
+    } catch (error: any) {
       return new Response(`Error serving content: ${error.message}`, {
         status: 500,
       });
