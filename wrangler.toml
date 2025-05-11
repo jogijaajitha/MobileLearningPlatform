@@ -1,5 +1,5 @@
 name = "skrolla"
-compatibility_date = "2024-09-23"
+compatibility_date = "2024-09-25"
 compatibility_flags = ["nodejs_compat"]
 main = "_worker.js"
 
