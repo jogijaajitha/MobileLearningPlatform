@@ -8,3 +8,6 @@ command = "npm install && npm run build"
 
 [site]
 bucket = "./dist/public"
+
+[observability.logs]
+enabled = false
