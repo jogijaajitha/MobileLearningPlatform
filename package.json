@@ -11,7 +11,9 @@
     "db:push": "drizzle-kit push",
     "deploy": "npm run build && wrangler deploy",
     "deploy:pages": "npm run build && wrangler pages deploy dist/public --project-name=skrolla",
-    "dev:worker": "wrangler dev --site=./dist/public"
+    "dev:worker": "wrangler dev --site=./dist/public",
+    "dev:frontend": "vite",
+    "build:frontend": "vite build"
   },
   "dependencies": {
     "@cloudflare/kv-asset-handler": "^0.4.0",

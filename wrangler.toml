@@ -4,10 +4,21 @@ compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
 main = "_worker.js"
 
 [build]
-command = "npm install && npm run build"
+command = "npm run build:frontend"
 
 [site]
 bucket = "./dist/public"
+
+# Cache settings for better performance
+[site.cache]
+caching = true
+browser_ttl = 3600
+serve_stale = true
+
+# Enable Web Optimization features for better performance
+[optimization]
+bundle = true    # Bundle your JavaScript
+minify = true    # Minify your JavaScript
 
 [observability.logs]
 enabled = true
@@ -16,4 +27,4 @@ enabled = true
 name = "skrolla-production"
 
 [env.development]
-name = "skrolla-development" 
+name = "skrolla-development"
