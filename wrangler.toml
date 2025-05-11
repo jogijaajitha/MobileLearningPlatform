@@ -1,0 +1,16 @@
+name = "skrolla-landing-page"
+compatibility_date = "2023-05-11"
+node_compat = true
+
+[build]
+command = "npm run build"
+
+[site]
+bucket = "./dist"
+
+# Enable static assets
+[assets]
+directory = "./dist"
+
+[dev]
+port = 8787
