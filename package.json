@@ -10,7 +10,8 @@
     "check": "tsc",
     "db:push": "drizzle-kit push",
     "deploy": "npm run build && wrangler deploy",
-    "deploy:pages": "npm run build && wrangler pages deploy dist/public --project-name=skrolla"
+    "deploy:pages": "npm run build && wrangler pages deploy dist/public --project-name=skrolla",
+    "dev:worker": "wrangler dev --site=./dist/public"
   },
   "dependencies": {
     "@cloudflare/kv-asset-handler": "^0.4.0",

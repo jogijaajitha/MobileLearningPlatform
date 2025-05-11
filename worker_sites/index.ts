@@ -5,6 +5,11 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
 
+    // Debug output to help identify issues
+    console.log("Worker request path:", path);
+    console.log("Environment keys:", Object.keys(env || {}));
+    console.log("ASSETS binding present:", !!(env && env.ASSETS));
+
     // Handle API requests (placeholder for now)
     if (path.startsWith("/api/")) {
       return new Response(
