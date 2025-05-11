@@ -11,3 +11,9 @@ bucket = "./dist/public"
 
 [observability.logs]
 enabled = true
+
+[env.production]
+name = "skrolla-production"
+
+[env.development]
+name = "skrolla-development" 

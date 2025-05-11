@@ -19,15 +19,37 @@ export default {
     }
 
     try {
-      // Let Cloudflare Pages handle static assets and routing
-      // This approach doesn't use fetch() on the same origin, which avoids the 1042 error
+      // Check if ASSETS binding exists before using it
+      if (env && env.ASSETS) {
+        return env.ASSETS.fetch(request);
+      }
 
-      // For SPA (Single Page Application) routing, return index.html for routes
-      // that don't match a static asset - this is handled automatically by Cloudflare Pages
+      // If ASSETS binding is not available (which is the case on workers.dev domains),
+      // use direct fetch to serve static content
+      const path = url.pathname === "/" ? "/index.html" : url.pathname;
 
-      // Pass the request through to Cloudflare Pages' built-in asset handling
-      return env.ASSETS.fetch(request);
+      try {
+        // Try to fetch the static asset
+        const response = await fetch(new URL(path, request.url));
+
+        if (
+          response.status === 404 &&
+          !path.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/)
+        ) {
+          // For SPA routing, return index.html for 404s that aren't static assets
+          return await fetch(new URL("/index.html", request.url));
+        }
+
+        return response;
+      } catch (fetchError: any) {
+        console.error("Fetch error:", fetchError);
+        return new Response(`Failed to fetch content: ${fetchError.message}`, {
+          status: 500,
+          headers: { "Content-Type": "text/plain" },
+        });
+      }
     } catch (error: any) {
+      console.error("Worker error:", error);
       return new Response(`Error serving content: ${error.message}`, {
         status: 500,
       });
