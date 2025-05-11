@@ -10,4 +10,4 @@ command = "npm install && npm run build"
 bucket = "./dist/public"
 
 [observability.logs]
-enabled = false
+enabled = true
