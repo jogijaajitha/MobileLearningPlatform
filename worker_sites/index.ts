@@ -18,20 +18,15 @@ export default {
       );
     }
 
-    // Serve static files from Cloudflare Pages
     try {
-      // Rewrite the URL to index.html for client-side routing
-      const path = url.pathname === "/" ? "/index.html" : url.pathname;
+      // Let Cloudflare Pages handle static assets and routing
+      // This approach doesn't use fetch() on the same origin, which avoids the 1042 error
 
-      // Try to serve a static asset
-      const response = await fetch(new URL(path, request.url));
+      // For SPA (Single Page Application) routing, return index.html for routes
+      // that don't match a static asset - this is handled automatically by Cloudflare Pages
 
-      if (response.status === 404) {
-        // For client-side routing, serve index.html for any route not found
-        return await fetch(new URL("/index.html", request.url));
-      }
-
-      return response;
+      // Pass the request through to Cloudflare Pages' built-in asset handling
+      return env.ASSETS.fetch(request);
     } catch (error: any) {
       return new Response(`Error serving content: ${error.message}`, {
         status: 500,
