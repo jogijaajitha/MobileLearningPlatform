@@ -13,7 +13,7 @@
     "deploy:pages": "npm run build && wrangler pages deploy dist/public --project-name=skrolla",
     "dev:worker": "wrangler dev --site=./dist/public",
     "dev:frontend": "vite",
-    "build:frontend": "vite build"
+    "build:frontend": "vite build && tsc -p worker-tsconfig.json && node copy-worker.js"
   },
   "dependencies": {
     "@cloudflare/kv-asset-handler": "^0.4.0",
