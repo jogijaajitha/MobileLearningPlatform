@@ -3,9 +3,10 @@
 export default {
   async fetch(request: Request, env: any, ctx: any) {
     const url = new URL(request.url);
+    const path = url.pathname;
 
     // Handle API requests (placeholder for now)
-    if (url.pathname.startsWith("/api/")) {
+    if (path.startsWith("/api/")) {
       return new Response(
         JSON.stringify({
           message:
@@ -21,12 +22,28 @@ export default {
     try {
       // Check if ASSETS binding exists before using it
       if (env && env.ASSETS) {
-        return env.ASSETS.fetch(request);
+        // Try to serve the requested path
+        let response = await env.ASSETS.fetch(request.clone());
+
+        // If it's a 404 and not a file with a specific extension, serve index.html for SPA routing
+        if (
+          response.status === 404 &&
+          !path.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/)
+        ) {
+          // Create a new request for index.html
+          const indexRequest = new Request(
+            new URL("/index.html", request.url),
+            request,
+          );
+          return env.ASSETS.fetch(indexRequest);
+        }
+
+        return response;
       }
 
-      // Fall back to default 404 for non-existent assets
-      return new Response("Not found", {
-        status: 404,
+      // If we get here and ASSETS binding doesn't exist, return proper error
+      return new Response("Cloudflare Pages assets not available", {
+        status: 500,
         headers: { "Content-Type": "text/plain" },
       });
     } catch (error: any) {
