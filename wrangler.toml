@@ -1,16 +1,7 @@
-name = "mobile-learning-platform"
-compatibility_date = "2023-05-11"
+name = "skrolla"
+compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
-main = "dist/index.js"
-
-[build]
-command = "npm run build"
+main = "_worker.js"
 
 [site]
 bucket = "./dist/public"
-
-[env.production]
-workers_dev = false
-
-[dev]
-port = 8787
